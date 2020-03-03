@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "client": "npm start --prefix client",
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "dev" : "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
