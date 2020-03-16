@@ -10,15 +10,14 @@ const Routes = () => {
 
     return (
         <section className='container'>
-            <Aler/>
+            <Alert/>
             <Switch>
                 <Route exact path='/register' component={Register}/>
-                <Route exact path='/login' component={Register}/>
-                <PrivateRoute exact path='/posts' component={Posts}/>
-
+                <Route exact path='/login' component={Login}/>
+                <PrivateRoute exact path='/posts' component={Posts} />
             </Switch>
         </section>
     )
 
 };
-export default Routes
+export default Routes;

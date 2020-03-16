@@ -3,17 +3,15 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import Alert from './components/layout/Alert';
-import {loadUser} from './actions/auth';
 import setAuthToken from './Utils/setAuthToken';
-import Posts from './components/posts/Posts'
+import Routes from './components/routing/Routes';
 
 //Redux
 import {Provider} from 'react-redux';
 import store from './store';
-import PrivateRoute from './components/routing/PrivateRoute';
+import { loadUser } from './actions/auth';
+
+
 
 if(localStorage.token){
   setAuthToken(localStorage.token);
@@ -21,27 +19,25 @@ if(localStorage.token){
 
 const App = () =>{ 
 
-  useEffect(()=> {
-    store.dispatch(loadUser);
-  }, [])
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      store.dispatch(loadUser());
+    }
+  }, []);
 
   return(
-  <Provider store={store}>
-  <Router>
-    <Fragment >
-      <Navbar/>
-      <Route exact path="/" component= {Landing} />
-      <section className="container">
-        <Alert/>
+    <Provider store={store}>
+    <Router>
+      <Fragment>
+        <Navbar />
         <Switch>
-          <Route exact path ="/register" component={Register}/>
-          <Route exact path ="/login" component={Login}/>
-          <PrivateRoute exact path='/posts' component={Posts}/>
+          <Route exact path="/" component={Landing} />
+          <Route component={Routes} />
         </Switch>
-      </section>
-    </Fragment>
-  </Router>
-</Provider>
+      </Fragment>
+    </Router>
+  </Provider>
 );
-  }
+};
 export default App;

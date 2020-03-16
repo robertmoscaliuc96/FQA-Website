@@ -8,11 +8,12 @@ const Navbar=({auth: {isAuthenticated, loading}, logout}) =>{
   const authLinks = (
     <ul>
       <li>
+        <i className="fab fa-discourse"></i>
         <Link to='/posts'>Posts</Link>
       </li>
       <li>
       <a onClick={logout} href='#!'>
-      <i className="fas fa-sign-out-ale"></i>{' '}
+      <i className="fas fa-sign-out-alt"></i>{' '}
       <span className="hide-sm">Logout</span></a> 
       </li>
   </ul>
@@ -20,9 +21,14 @@ const Navbar=({auth: {isAuthenticated, loading}, logout}) =>{
 
   const guessLinks = (
     <ul>
-      <li><a href='#!'>FQA.dev</a></li>
-      <li><Link to="/register">Register</Link></li>
-      <li><Link to="/login">Login</Link></li>
+      <li>
+      <i className="far fa-plus-square"></i>
+        <Link to='/register'>Sign Up</Link>
+      </li>
+      <li>
+        <i className="fas fa-sign-in-alt"></i>
+        <Link to='/login'>Login</Link>
+      </li>
     </ul>
   );
     return (
