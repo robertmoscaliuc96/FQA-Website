@@ -7,7 +7,9 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import {loadUser} from './actions/auth';
-import setAuthToken from './Utils/setAuthToken'
+import setAuthToken from './Utils/setAuthToken';
+import Posts from './components/posts/Posts'
+
 //Redux
 import {Provider} from 'react-redux';
 import store from './store';
