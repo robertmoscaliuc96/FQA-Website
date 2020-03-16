@@ -13,6 +13,7 @@ import Posts from './components/posts/Posts'
 //Redux
 import {Provider} from 'react-redux';
 import store from './store';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 if(localStorage.token){
   setAuthToken(localStorage.token);
@@ -35,6 +36,7 @@ const App = () =>{
         <Switch>
           <Route exact path ="/register" component={Register}/>
           <Route exact path ="/login" component={Login}/>
+          <PrivateRoute exact path='/posts' component={Posts}/>
         </Switch>
       </section>
     </Fragment>

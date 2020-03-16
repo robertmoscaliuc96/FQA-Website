@@ -7,8 +7,8 @@ const initialState = {
     posts: [],
     post: null,
     loading: true,
-    error:{}
-};
+    error: {}
+  };
 
 
 export default function(state=initialState, action){
