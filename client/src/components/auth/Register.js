@@ -30,7 +30,7 @@ const Register=({ setAlert, register,isAuthenticated})=> {
     }
 // Redirect to
     if(isAuthenticated){
-      return <Redirect to="/dashboard"/>
+      return <Redirect to="/posts"/>
     }
 
     return (
