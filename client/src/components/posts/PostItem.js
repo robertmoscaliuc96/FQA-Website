@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import {addLike, removeLike,deletePost } from '../../actions/post';
 
-const PostItem = ({ auth,addLike,removeLike,deletePost,showActions, post: {_id, text, name, avatar,user, likes, comments,date}}) => (
+const PostItem = ({ auth,addLike,removeLike,deletePost,showActions, post: {_id,title, text, name, avatar,user, likes, comments,date}}) => (
         <div className="post bg-white p-1 my-1">
           <div>
             
@@ -18,6 +18,7 @@ const PostItem = ({ auth,addLike,removeLike,deletePost,showActions, post: {_id, 
             
           </div>
           <div>
+            <h4 className="my-1">{title}</h4>
             <p className="my-1">
             {text}
             </p>
@@ -34,8 +35,8 @@ const PostItem = ({ auth,addLike,removeLike,deletePost,showActions, post: {_id, 
               <i className="fas fa-thumbs-down"></i>
             </button>
             <Link to={`/posts/${_id}`} className="btn btn-primary">
-              Discussion{' '} {comments.length >0 && (
-                <span className='comment-count'>{comments.length}</span>
+             {comments.length > 0 ? (
+                <span className='comment-count'>Answers{' '}{comments.length}</span> ): (<span className='comment-count'>Unanswered</span>
               )}
             </Link>
             {!auth.loading && user === auth.user._id && (
