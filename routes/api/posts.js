@@ -24,7 +24,7 @@ async (req, res) => {
 
     try {
       const user = await User.findById(req.user.id).select('-password');
-
+      
       const newPost = new Post({
         title: req.body.title,
         text: req.body.text,
@@ -181,7 +181,7 @@ async (req, res) => {
 
   try {
     const user = await User.findById(req.user.id).select('-password');
-
+    
     const post = await Post.findById(req.params.id);
     const newComment = {
       text: req.body.text,
@@ -195,7 +195,7 @@ async (req, res) => {
     <h3>Answer Details</h3>
     <ul>  
       <li>Name: ${user.name}</li>
-      <li>Question: ${req.body.title}</li>
+      <li>Question: ${post.title}</li>
       <li>Answer: ${req.body.text}</li>
       <li>Email: ${user.email}</li>
       
