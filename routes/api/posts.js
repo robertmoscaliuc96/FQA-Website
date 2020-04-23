@@ -30,7 +30,8 @@ async (req, res) => {
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
+        keyword: req.body.keyword
       });
 
       const post = await newPost.save();
@@ -198,6 +199,7 @@ async (req, res) => {
       <li>Question: ${post.title}</li>
       <li>Answer: ${req.body.text}</li>
       <li>Email: ${user.email}</li>
+      <li>Link: http://localhost:3000/posts/${req.params.id}</li>
       
     </ul>
     <h3>Message</h3>

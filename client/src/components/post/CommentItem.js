@@ -37,9 +37,9 @@ const CommentItem = ({
         <button
           onClick={() => addVote(_id)}
           type='button'
-          className='far fa-check-circle'
+          className='btn btn-light'
         >
-          <i className='fas fa-times' />
+          <i className="fas fa-thumbs-up" />
         </button>
       )}
     </div>

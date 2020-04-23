@@ -11,6 +11,10 @@ const PostSchema = new Schema({
         type: String,
         required: true,
     },
+    keyword:{
+        type: String,
+        required: true,
+    },
     text:{
         type: String,
         required: true,
