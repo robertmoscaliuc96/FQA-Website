@@ -7,7 +7,7 @@ const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-
+const nodemailer = require("nodemailer");
 
 // @route   POST api/posts
 // @desc    Create a post
@@ -188,8 +188,55 @@ async (req, res) => {
       name: user.name,
       avatar: user.avatar,
       user: req.user.id
-    };
 
+    };
+    const output = `
+    <p>You have a new answer </p>
+    <h3>Answer Details</h3>
+    <ul>  
+      <li>Name: ${user.name}</li>
+      <li>Question: ${req.body.title}</li>
+      <li>Answer: ${req.body.text}</li>
+      <li>Email: ${user.email}</li>
+      
+    </ul>
+    <h3>Message</h3>
+    <p>${req.body.message}</p>
+  `;
+    let transporter = nodemailer.createTransport({
+      service: 'Yahoo',
+      // true for 465, false for other ports
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'robertmoscaliuc96@yahoo.com', // generated ethereal user
+        pass: "heebshmmwkarrxhp" // generated ethereal password
+      },
+      tls:{
+        rejectUnauthorized:false
+      }
+
+    });
+  
+    // send mail with defined transport object
+    let mailOptions = await transporter.sendMail({
+      from: `"FAQ dev" <robertmoscaliuc96@yahoo.com`, // sender address
+      to: "robertmoscaliuc1@gmail.com", // list of receivers
+      subject: `New Answer`, // Subject line
+      text: `${req.body.text}`, // plain text body
+      html: output // html body
+    });
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);   
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+      res.render('contact', {msg:'Email has been sent'});
+  });
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     post.comments.unshift(newComment)
     await post.save();
 
@@ -235,6 +282,34 @@ res.json(post.comments);
   res.status(500).send('Server Error');
 }
 
+});
+
+// @route   PUT api/posts/comment/upvote:id
+// @desc    Like a post
+// @access  Private 
+router.put('/comment/:id/:comment_id', auth, async(req,res)=>{
+  try {
+    const post = await Post.findById(req.params.id);
+    // Check if the post has already been upvoted
+    const comment= post.comments.find(comment => comment.id === req.params.comment_id)
+    // check if comment exist
+    if(!comment){
+      return res.status(404).json({msg: "comment doesn't exist"});
+    }
+    // Check user 
+    if(comment.user.toString()!== req.user.id){
+      return res.status(401).json({msg: "User not authorized"});
+    }
+    post.upvote.unshift({user: req.user.id});
+
+    await post.save();
+
+    res.json(post.upvote);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
 });
 
 module.exports = router;

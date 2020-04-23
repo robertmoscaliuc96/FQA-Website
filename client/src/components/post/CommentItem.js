@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import { deleteComment } from '../../actions/post';
+import { deleteComment,addVote } from '../../actions/post';
 
 const CommentItem = ({
     postId,
     comment: { _id, text,name,avatar,user,date},
     auth,
+    addVote,
     deleteComment
 }) => (
     <div className='post bg-white p-1 my-1'>
@@ -32,6 +33,15 @@ const CommentItem = ({
           <i className='fas fa-times' />
         </button>
       )}
+      {!auth.loading && user === auth.user._id && (
+        <button
+          onClick={() => addVote(_id)}
+          type='button'
+          className='far fa-check-circle'
+        >
+          <i className='fas fa-times' />
+        </button>
+      )}
     </div>
   </div>
 );
@@ -41,10 +51,11 @@ CommentItem.propTypes = {
     comment: PropTypes.object.isRequired,
     auth : PropTypes.object.isRequired,
     deleteComment: PropTypes.func.isRequired,
+    addVote: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {deleteComment})(CommentItem);
+export default connect(mapStateToProps, {deleteComment,addVote})(CommentItem);

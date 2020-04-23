@@ -9,7 +9,8 @@ import{
     DELETE_POST,
     ADD_POST,
     ADD_COMMENT,
-    REMOVE_COMMENT
+    REMOVE_COMMENT,
+    UPDATE_VOTE
 } from './type';
 
 // Get posts
@@ -37,6 +38,22 @@ export const getPosts = () => async dispatch => {
       dispatch({
         type: UPDATE_LIKES,
         payload: {id, likes: res.data}
+      });
+    } catch (err) {
+      dispatch({
+        type: POST_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  };
+// Vote comment
+  export const addVote = (postId,commentId) => async dispatch => {
+    try {
+      const res = await axios.put(`/api/posts/comment/${postId}/${commentId}`);
+  
+      dispatch({
+        type: UPDATE_VOTE,
+        payload: {commentId, upvote: res.data}
       });
     } catch (err) {
       dispatch({

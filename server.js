@@ -1,7 +1,8 @@
 
 const express = require("express");
 const connectDB = require("./config/db");
-const path = require('path')
+const path = require('path');
+const nodemailer = require('nodemailer');
 
 const app = express();
 

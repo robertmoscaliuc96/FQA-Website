@@ -53,6 +53,14 @@ const PostSchema = new Schema({
                 type: Date,
                 default: Date.now
             },
+            upvote:[
+                {
+                    user:{
+                        type: Schema.Types.ObjectId,
+                        ref: "users"
+                    }
+                }
+            ],
         }
     ]
 });
