@@ -24,7 +24,7 @@ const Posts = ({getPosts, post:{posts, loading}}) => {
                 <PostForm></PostForm>
                 <div className="form-group">
                   <select name="filter" value={filter} onChange={onChange}>
-                    <option>* Select a Keyword</option>
+                    <option>* Select a filter</option>
                     <option value="Front-end">Front-end</option>
                     <option value="Back-end">Back-end</option>
                     <option value="Databases">Databases</option>

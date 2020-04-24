@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom';
 
 
 export default function Landing() {
-    return (
+    
+  
+  return (
         <section className="landing">
         <div className="dark-overlay">
           <div className="landing-inner">

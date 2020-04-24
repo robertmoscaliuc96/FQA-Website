@@ -4,7 +4,7 @@ const {check, validationResult} = require('express-validator');
 const auth = require("../../middleware/auth");
 
 const Post = require('../../models/Post');
-const Profile = require('../../models/Profile');
+//const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 const nodemailer = require("nodemailer");
