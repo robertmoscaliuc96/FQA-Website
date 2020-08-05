@@ -37,7 +37,7 @@ beforeEach(async() => {
 })
 
 describe('Registering', () => {
-	test('Register a user', async done => {
+	test.skip('Register a user', async done => {
 		//start generating a trace file.
 		await page.tracing.start({path: 'trace/registering_user_har.json',screenshots: true})
 
