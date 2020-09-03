@@ -2,7 +2,7 @@
   "name": "fqa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "client": "npm start --prefix client",
     "start": "node server",
