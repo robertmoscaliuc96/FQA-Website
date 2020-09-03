@@ -25,13 +25,13 @@ const PrivateRoute = ({
   />
 );
 
-  PrivateRoute.propTypes = {
-    auth: PropTypes.object.isRequired
-  };
-  
-  const mapStateToProps = state => ({
-    auth: state.auth
-  });
-  
-  export default connect(mapStateToProps)(PrivateRoute);
+PrivateRoute.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(PrivateRoute);
   
