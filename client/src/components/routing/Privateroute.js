@@ -6,17 +6,23 @@ import { connect } from 'react-redux';
 
 // A private route for those who are Authenticated
 const PrivateRoute = ({
-    component: Component,
-    auth: { isAuthenticated, loading },
-    ...rest
-  }) => (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+  component: Component,
+  auth: { isAuthenticated, loading },
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={props =>
+      loading ? (
+        <Spinner />
+      ) : isAuthenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
 
   PrivateRoute.propTypes = {
     auth: PropTypes.object.isRequired

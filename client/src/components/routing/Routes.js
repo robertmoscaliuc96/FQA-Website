@@ -5,7 +5,7 @@ import Login from '../auth/Login';
 import Alert from '../layout/Alert';
 import Posts from '../posts/Posts';
 import Post from '../post/Post';
-import PrivateRoute from '../routing/PrivateRoute'
+import PrivateRoute from '../routing/PrivateRoute';
 import NotFound from '../layout/NotFound';
 
 const Routes = () => {
