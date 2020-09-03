@@ -19,7 +19,7 @@ const Posts = ({getPosts, post:{posts, loading}}) => {
                 <Fragment>
                 <h1 className="large text-primary">Questions</h1>
                 <p className='lead'>
-                    <i className="fas fa-user"></i>Welcome to the Community
+                    <i className="fas fa-user"></i>Welcome to the Developer Community
                 </p>
                 <PostForm></PostForm>
                 <div className="form-group">
@@ -52,7 +52,7 @@ const Posts = ({getPosts, post:{posts, loading}}) => {
                 <Fragment>
                 <h1 className="large text-primary">Questions</h1>
                 <p className='lead'>
-                    <i className="fas fa-user"></i>Welcome to the Community
+                    <i className="fas fa-user"></i>Welcome to the Developer Community
                 </p>
                 <PostForm></PostForm>
                 <div className="form-group">
